@@ -1,13 +1,31 @@
 <?php
 $userName = $_SESSION["login"];
+?>
+<script>
+    $(document).ready(function($) {
+        $(".table-row").click(function() {
+            const id = this.id;
+            window.document.location = 'http://localhost/tray-homework-php-test/?vendorId=' + id.substr(15) + '&edit';
+        });
+    });
 
-function makeVendorsTableHead() {
+</script>
+<style>
+    .table-row{
+cursor:pointer;
+}
+</style>
+<?php
+function makeVendorsTableHead()
+{
     echo "<tr>
             <th scope='col'>#</th>
             <th scope='col'>Name</th>
             <th scope='col'>E-mail</th>
             <th scope='col'>Phone</th>
             <th scope='col'>Sales made</th>
+            <th scope='col'></th>
+            <th scope='col'></th>
         </tr>";
 };
 
@@ -17,15 +35,17 @@ function makeVendorsTable()
 
     $sql = "Select * From Vendor Where Vendor_Status_Id = 1";
     $result = $conn->query($sql);
-    
+
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo "<tr>
+            echo "<tr class='table-row' id='vendorsTableRow" . $row["Vendor_Id"] . "' data-href='#'>
                     <th scope='row'>" . $row["Vendor_Id"] . "</th> 
                     <td>" . $row["Vendor_Name"] . "</td> 
                     <td>" . $row["Vendor_Email"] . "</td> 
                     <td>" . $row['Vendor_Phone'] . "</td>
                     <td>" . $row['Vendor_Sales'] . "</td>
+                    <td>Add sale icon</td>
+                    <td>Remove vendor</td>
                 </tr>";
         }
     }
@@ -52,7 +72,7 @@ function makeVendorsTable()
     </div>
 </div>
 <div class="container" style="width: 80%;">
-    <table class="table table-responsive">
+    <table class="table table-hover table-responsive">
         <thead>
             <?php makeVendorsTableHead(); ?>
         </thead>
