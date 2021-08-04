@@ -13,8 +13,8 @@ if (isset($_POST['submitButton'])) {
     $phone = $_POST['inputPhone'];
 
     if (!isset($_GET['edit'])) {
-        $sql = "Insert Into Vendor (Vendor_Name, Vendor_Email, Vendor_Phone) 
-                Values ('" . $name . "', '" . $email . "', '" . $phone . "')";
+        $sql = "Insert Into Vendor (Vendor_Name, Vendor_Email, Vendor_Phone, Vendor_Status_Id) 
+                Values ('" . $name . "', '" . $email . "', '" . $phone . "', 1)";
     } else {
         $sql = "Update Vendor
                 Set Vendor_Name = '" . $name . "',
