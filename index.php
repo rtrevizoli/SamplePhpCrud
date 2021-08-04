@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Login</title>
+    <title>Sales</title>
     <!-- Bootstrap Required JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -22,6 +22,10 @@
         if(isset($_GET['logout'])) {
             session_destroy();
             header("Location: http://localhost/tray-homework-php-test/");
+        }
+        if(isset($_GET['vendorId'])) {
+            include('vendor.php');
+            return;
         }
         include('home.php');
     }
