@@ -8,8 +8,6 @@ $passwordForm = $_POST["inputPassword"];
 $userName = "";
 
 
-echo "$emailForm<br>$passwordForm";
-
 $sql = "Select User_Name From User Where User_Email = '$emailForm' and User_Password = '$passwordForm' Limit 1";
 $result = $conn->query($sql);
 
