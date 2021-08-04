@@ -1,5 +1,37 @@
 <?php
 $userName = $_SESSION["login"];
+
+function makeVendorsTableHead() {
+    echo "<tr>
+            <th scope='col'>#</th>
+            <th scope='col'>Name</th>
+            <th scope='col'>E-mail</th>
+            <th scope='col'>Phone</th>
+            <th scope='col'>Sales made</th>
+        </tr>";
+};
+
+function makeVendorsTable()
+{
+    include('db-connection.php');
+
+    $sql = "Select * From Vendor Where Vendor_Status_Id = 1";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>
+                    <th scope='row'>" . $row["Vendor_Id"] . "</th> 
+                    <td>" . $row["Vendor_Name"] . "</td> 
+                    <td>" . $row["Vendor_Email"] . "</td> 
+                    <td>" . $row['Vendor_Phone'] . "</td>
+                    <td>" . $row['Vendor_Sales'] . "</td>
+                </tr>";
+        }
+    }
+    mysqli_close($conn);
+}
+
 ?>
 
 <h1><?php echo "Hello, " . $userName; ?></h1>
@@ -22,32 +54,10 @@ $userName = $_SESSION["login"];
 <div class="container" style="width: 80%;">
     <table class="table table-responsive">
         <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">Sales made</th>
-            </tr>
+            <?php makeVendorsTableHead(); ?>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>motto@mdo.com</td>
-                <td>R$ 500,00</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>jthornton@fat.com</td>
-                <td>R$ 200,00</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry the Bird</td>
-                <td>lnoi@twitter.com</td>
-                <td>R$ 30,00</td>
-            </tr>
+            <?php makeVendorsTable(); ?>
         </tbody>
     </table>
 </div>
