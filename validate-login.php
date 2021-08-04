@@ -3,8 +3,8 @@ session_start();
 include('db-connection.php');
 
 
-$emailForm = $_POST["inputEmail"];
-$passwordForm = $_POST["inputPassword"];
+$emailForm = $_POST['inputEmail'];
+$passwordForm = $_POST['inputPassword'];
 $userName = "";
 
 
@@ -12,7 +12,7 @@ $sql = "Select User_Name From User Where User_Email = '$emailForm' and User_Pass
 $result = $conn->query($sql);
 
 while($row = $result->fetch_assoc()) {
-    $userName = $row["User_Name"];
+    $userName = $row['User_Name'];
   }
 
 mysqli_close($conn);
