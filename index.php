@@ -24,7 +24,13 @@
             header("Location: http://localhost/tray-homework-php-test/");
         }
         if(isset($_GET['vendorId'])) {
-            include('vendor.php');
+            if(isset($_GET['edit']) || isset($_GET['new'])) {
+                include('vendor.php');
+            } else if (isset($_GET['delete'])) {
+                include('home.php');
+            } else if (isset($_GET['sales'])) {
+                include('sales.php');
+            }
             return;
         }
         include('home.php');
