@@ -23,13 +23,19 @@
             session_destroy();
             header("Location: http://localhost/tray-homework-php-test/");
         }
+        if(isset($_GET['saleId'])) {
+            if(isset($_GET['new'])) {
+                include('sale.php');
+            }
+            return;
+        }
         if(isset($_GET['vendorId'])) {
-            if(isset($_GET['edit']) || isset($_GET['new'])) {
+            if(isset($_GET['new']) || isset($_GET['edit'])) {
                 include('vendor.php');
             } else if (isset($_GET['delete'])) {
                 include('home.php');
             } else if (isset($_GET['sales'])) {
-                include('sales.php');
+                include('vendorSales.php');
             }
             return;
         }
