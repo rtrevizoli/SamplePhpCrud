@@ -32,7 +32,17 @@ function makeVendorsTable()
 {
     include('db-connection.php');
 
-    $sql = "Select Vendor_Id, Vendor_Name, Vendor_Email, Vendor_Phone, Vendor_Sales From Vendor Where Vendor_Status_Id = 1";
+    $sql = "Select  V.Vendor_Id, 
+	                V.Vendor_Name, 
+                    V.Vendor_Email, 
+                    V.Vendor_Phone, 
+                    IfNull(Sum(S.Sale_Value), 0) Vendor_Sales
+            From Vendor V
+                Left Join Sale S On V.Vendor_Id = S.Sale_Vendor_Id
+            Where Vendor_Status_Id = 1
+            Group by V.Vendor_Id, V.Vendor_Name, V.Vendor_Email, V.Vendor_Phone
+        ";
+
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -42,7 +52,7 @@ function makeVendorsTable()
                     <td>" . $row["Vendor_Name"] . "</td> 
                     <td>" . $row["Vendor_Email"] . "</td> 
                     <td>" . $row['Vendor_Phone'] . "</td>
-                    <td>" . $row['Vendor_Sales'] . "</td>
+                    <td>R$ " . $row['Vendor_Sales'] . "</td>
                     <td>
                         <a class='btn btn-outline-warning' href = 'http://localhost/tray-homework-php-test/?vendorId=" . $row['Vendor_Id'] . "&edit'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='15' height='15' fill='currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
@@ -68,9 +78,10 @@ function makeVendorsTable()
 if (isset($_GET['delete'])) {
     include('db-connection.php');
 
-    $sql = "Update Vendor
+    $sql = "Update  Vendor
             Set Vendor_Status_Id = 2
-            Where Vendor_Id =" . $_GET['vendorId'];
+            Where Vendor_Id =" . $_GET['vendorId']
+        ;
 
     $result = $conn->query($sql);
 

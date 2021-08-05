@@ -8,7 +8,13 @@ $passwordForm = $_POST['inputPassword'];
 $userName = "";
 
 
-$sql = "Select User_Name From User Where User_Email = '$emailForm' and User_Password = '$passwordForm' Limit 1";
+$sql = "Select User_Name 
+        From User 
+        Where   User_Email = '$emailForm' 
+                and User_Password = '$passwordForm' 
+        Limit 1
+    ";
+
 $result = $conn->query($sql);
 
 while($row = $result->fetch_assoc()) {
