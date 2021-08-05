@@ -35,7 +35,7 @@ if (isset($_POST['submitButton'])) {
         echo "Record error: " . $conn->error;
       }
 
-    header("Location: http://localhost/tray-homework-php-test/?vendorId=" . $vendorId . "&sales");
+    header("Location: ../tray-homework-php-test/?vendorId=" . $vendorId . "&sales");
 
 }
 

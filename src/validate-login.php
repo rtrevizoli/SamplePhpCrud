@@ -32,6 +32,6 @@ if ($result->num_rows > 0) {
     $_SESSION['validate'] = 'false';
 }
 
-header("Location: http://localhost/tray-homework-php-test/");
+header("Location: ../");
 
 ?>
