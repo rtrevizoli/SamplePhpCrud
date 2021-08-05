@@ -101,7 +101,7 @@ if (isset($_GET['delete'])) {
 
 <h1><?php echo "Hello, " . $userName; ?></h1>
 
-<a class="btn btn-primary" href="../?logout">Logout</a>
+<a class="btn btn-primary" href="../tray-homework-php-test/?logout">Logout</a>
 
 <div class="container py-4" style="width: 80%;">
     <div class="row align-items-start">

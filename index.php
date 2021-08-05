@@ -21,7 +21,7 @@
     } else {
         if(isset($_GET['logout'])) {
             session_destroy();
-            header("Location: index.php");
+            header("Location: ./");
         }
         if(isset($_GET['saleId'])) {
             if(isset($_GET['new']) || isset($_GET['edit'])) {
