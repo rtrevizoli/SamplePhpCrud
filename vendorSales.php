@@ -3,7 +3,8 @@ function makeSalesTableHead()
 {
     echo "<tr>
             <th scope='col'>#</th>
-            <th scope='col'>Value</th>
+            <th scope='col'>Sale value</th>
+            <th scope='col'>Vendor's charge</th>
             <th scope='col'>Date</th>
             <th scope='col'></th>
             <th scope='col'></th>
@@ -16,8 +17,9 @@ function makeSalesTable()
     include('db-connection.php');
 
     $sql = "Select  Sale_Id, 
-                    Sale_Value, 
-                    Sale_Date 
+                    Truncate(IfNull(Sum(Sale_Value), 0), 2) Sale_Value,
+                    Truncate(IfNull(Sum(Sale_Value), 0) * 0.085, 2) Vendor_Charge,
+                    Date_Format(Sale_Date ,'%d/%m/%Y') Sale_Date 
             From Sale 
             Where   Sale_Vendor_Id = " . $vendorId . " 
                     and Sale_Status_Id = 1
@@ -30,6 +32,7 @@ function makeSalesTable()
             echo "<tr class='table-row' id='vendorsTableRow" . $row["Sale_Id"] . "' data-href='#'>
                     <th scope='row'>" . $row["Sale_Id"] . "</th> 
                     <td>R$ " . $row["Sale_Value"] . "</td> 
+                    <td>R$ " . $row["Vendor_Charge"] . "</td> 
                     <td>" . $row["Sale_Date"] . "</td> 
                     <td>
                         <a class='btn btn-outline-warning' href = 'http://localhost/tray-homework-php-test/?vendorId=" . $vendorId . "&saleId=" . $row["Sale_Id"] . "&edit'>

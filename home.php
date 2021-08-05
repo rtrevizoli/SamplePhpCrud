@@ -23,6 +23,7 @@ function makeVendorsTableHead()
             <th scope='col'>E-mail</th>
             <th scope='col'>Phone</th>
             <th scope='col'>Sales made</th>
+            <th scope='col'>Vendor's charge</th>
             <th scope='col'></th>
             <th scope='col'></th>
         </tr>";
@@ -36,7 +37,8 @@ function makeVendorsTable()
 	                V.Vendor_Name, 
                     V.Vendor_Email, 
                     V.Vendor_Phone, 
-                    IfNull(Sum(S.Sale_Value), 0) Vendor_Sales
+                    Truncate(IfNull(Sum(S.Sale_Value), 0), 2) Vendor_Sales,
+                    Truncate(IfNull(Sum(S.Sale_Value), 0) * 0.085, 2) Vendor_Charge
             From Vendor V
                 Left Join Sale S On V.Vendor_Id = S.Sale_Vendor_Id
             Where Vendor_Status_Id = 1
@@ -53,6 +55,7 @@ function makeVendorsTable()
                     <td>" . $row["Vendor_Email"] . "</td> 
                     <td>" . $row['Vendor_Phone'] . "</td>
                     <td>R$ " . $row['Vendor_Sales'] . "</td>
+                    <td>R$ " . $row['Vendor_Charge'] . "</td>
                     <td>
                         <a class='btn btn-outline-warning' href = 'http://localhost/tray-homework-php-test/?vendorId=" . $row['Vendor_Id'] . "&edit'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='15' height='15' fill='currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
