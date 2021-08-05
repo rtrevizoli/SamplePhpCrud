@@ -1,6 +1,7 @@
 <?php 
 include('db-connection.php');
 $vendorId = $_GET['vendorId'];
+$saleId = $_GET['saleId'];
 
 $saleValue = "";
 $saleDate = "";
@@ -11,14 +12,21 @@ if (isset($_POST['submitButton'])) {
     $saleDate = $_POST['inputSaleDate'];
 
     if (!isset($_GET['edit'])) {
-        $sql = "Insert Into Sale (Sale_Vendor_Id, Sale_Value, Sale_Date, Sale_Status_Id) 
-                Values ('" . $vendorId . "', '" . $saleValue . "', '" . $saleDate . "', 1)";
+        $sql = "Insert Into Sale (Sale_Vendor_Id, 
+                                  Sale_Value, 
+                                  Sale_Date, 
+                                  Sale_Status_Id) 
+                Values ('" . $vendorId . "',
+                        '" . $saleValue . "',
+                        '" . $saleDate . "',
+                        1)
+            ";
     } else {
-        $sql = "Update Vendor
-                Set Vendor_Name = '" . $name . "',
-                Vendor_Email = '" . $email . "',
-                Vendor_Phone = '" . $phone . "'
-                Where Vendor_Id = " . $vendorId;
+        $sql = "Update Sale
+                Set Sale_Value = '" . $saleValue . "',
+                    Sale_Date = '" . $saleDate . "'
+                Where Sale_Id = " . $saleId
+            ;
     }
 
     if ($conn->query($sql) === TRUE) {
@@ -27,18 +35,23 @@ if (isset($_POST['submitButton'])) {
         echo "Record error: " . $conn->error;
       }
 
-    header("Location: http://localhost/tray-homework-php-test/");
+    header("Location: http://localhost/tray-homework-php-test/?vendorId=" . $vendorId . "&sales");
 
 }
 
 if (isset($_GET['edit'])) {
-    $sql = "Select Vendor_Name, Vendor_Email, Vendor_Phone From Vendor Where Vendor_Id = '" . $vendorId . "'";
+    $sql = "Select  Sale_Value, 
+                    Sale_Date 
+            From Sale 
+            Where   Sale_Id = '" . $saleId . "' 
+                    and Sale_Vendor_Id ='" . $vendorId . "'
+        ";
+
     $result = $conn->query($sql);
 
     while($row = $result->fetch_assoc()) {
-        $name = $row["Vendor_Name"];
-        $email = $row['Vendor_Email'];
-        $phone = $row['Vendor_Phone'];
+        $saleValue = $row["Sale_Value"];
+        $saleDate = $row['Sale_Date'];
       }
 
 }
