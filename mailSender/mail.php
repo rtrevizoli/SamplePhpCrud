@@ -4,7 +4,7 @@ include('./src/db-connection.php');
 $to = 'rtrevizoli@yahoo.com.br';
 $from = 'ratrevizoli@gmail.com';
 $fromName = 'Rafael Trevizoli - Teste';
-$subject = 'Are u crazy ?';
+$subject = date('d/m/Y').' Sales Report';
 $message = '';
 $headers[] = 'MIME-Version: 1.0';
 $headers[] = 'Content-type: text/html; charset=iso-8859-1';
@@ -37,8 +37,8 @@ $message = '
             <title>Daily Sales Report</title>
         </head>
         <body>
-            <p>Boa noite!</p>
-            <p>Abaixo, vendas efetuadas na data de hoje, '.date('d/m/Y').'</p>
+            <p>Good evening!</p>
+            <p>Below, sales made today, '.date('d/m/Y').'</p>
             <table>
                 <thead>
                     <tr>
