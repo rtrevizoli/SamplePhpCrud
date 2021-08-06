@@ -1,0 +1,8 @@
+{
+    "name":"tray-homework-php-test/vendas",
+    "autoload":{
+        "psr-4":{
+            "App\\":"app/"
+        }
+    }
+}
