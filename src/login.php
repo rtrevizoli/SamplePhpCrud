@@ -25,7 +25,7 @@
     <div class="container py-4" style="width: 30%;">
         <div class="p-5 my-5 bg-light rounded-3">
             <div class="container-fluid">
-                <form action="validate-login.php" method="post">
+                <form action="src/validate-login.php" method="post">
                     <div class="mb-3">
                         <label for="inputEmail" class="form-label">Email address</label>
                         <input type="email" class="form-control" name="inputEmail" aria-describedby="emailHelp">

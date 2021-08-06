@@ -13,14 +13,22 @@ if (isset($_POST['submitButton'])) {
     $phone = $_POST['inputPhone'];
 
     if (!isset($_GET['edit'])) {
-        $sql = "Insert Into Vendor (Vendor_Name, Vendor_Email, Vendor_Phone, Vendor_Status_Id) 
-                Values ('" . $name . "', '" . $email . "', '" . $phone . "', 1)";
+        $sql = "Insert Into Vendor (Vendor_Name, 
+                                    Vendor_Email, 
+                                    Vendor_Phone, 
+                                    Vendor_Status_Id) 
+                Values ('" . $name . "', 
+                        '" . $email . "', 
+                        '" . $phone . "', 
+                        1)
+            ";
     } else {
         $sql = "Update Vendor
                 Set Vendor_Name = '" . $name . "',
-                Vendor_Email = '" . $email . "',
-                Vendor_Phone = '" . $phone . "'
-                Where Vendor_Id = " . $vendorId;
+                    Vendor_Email = '" . $email . "',
+                    Vendor_Phone = '" . $phone . "'
+                Where Vendor_Id = " . $vendorId
+            ;
     }
 
     if ($conn->query($sql) === TRUE) {
@@ -29,12 +37,18 @@ if (isset($_POST['submitButton'])) {
         echo "Record error: " . $conn->error;
       }
 
-    header("Location: http://localhost/tray-homework-php-test/");
+    header("Location: ../tray-homework-php-test/");
 
 }
 
 if (isset($_GET['edit'])) {
-    $sql = "Select Vendor_Name, Vendor_Email, Vendor_Phone From Vendor Where Vendor_Id = '" . $vendorId . "'";
+    $sql = "Select  Vendor_Name, 
+                    Vendor_Email, 
+                    Vendor_Phone 
+            From Vendor 
+            Where Vendor_Id = '" . $vendorId . "'
+        ";
+        
     $result = $conn->query($sql);
 
     while($row = $result->fetch_assoc()) {

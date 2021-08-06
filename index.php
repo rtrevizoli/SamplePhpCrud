@@ -17,17 +17,31 @@
 <body>
     <?php
     if (!isset($_SESSION['login'])) {
-        include('login.php');
+        include('src/login.php');
     } else {
         if(isset($_GET['logout'])) {
             session_destroy();
-            header("Location: http://localhost/tray-homework-php-test/");
+            header("Location: ./");
         }
-        if(isset($_GET['vendorId'])) {
-            include('vendor.php');
+        if(isset($_GET['saleId'])) {
+            if(isset($_GET['new']) || isset($_GET['edit'])) {
+                include('src/sale.php');
+            } else if (isset($_GET['delete'])) {
+                include('src/vendorSales.php');
+            }
             return;
         }
-        include('home.php');
+        if(isset($_GET['vendorId'])) {
+            if(isset($_GET['new']) || isset($_GET['edit'])) {
+                include('src/vendor.php');
+            } else if (isset($_GET['delete'])) {
+                include('src/home.php');
+            } else if (isset($_GET['sales'])) {
+                include('src/vendorSales.php');
+            }
+            return;
+        }
+        include('src/home.php');
     }
     ?>
 </body>
