@@ -22,7 +22,7 @@ $sql = "Select  V.Vendor_Id,
             From Vendor V
                 Left Join Sale S On V.Vendor_Id = S.Sale_Vendor_Id
             Where   V.Vendor_Status_Id = 1
-                    and S.Sale_Date >=".date('Y-m-d')."
+                    and S.Sale_Date =".date('Y-m-d')."
             Group by V.Vendor_Id, V.Vendor_Name, V.Vendor_Email, V.Vendor_Phone
         ";
 
