@@ -1,5 +1,5 @@
 <?php
-$userName = $_SESSION["login"];
+$userName = $_SESSION['login'];
 ?>
 <script>
     $(document).ready(function($) {
@@ -44,6 +44,22 @@ function makeVendorsTable()
             Where Vendor_Status_Id = 1
             Group by V.Vendor_Id, V.Vendor_Name, V.Vendor_Email, V.Vendor_Phone
         ";
+    
+    if (isset($_GET['vendorsSearch'])) {
+        $sql = "Select  V.Vendor_Id, 
+                        V.Vendor_Name, 
+                        V.Vendor_Email, 
+                        V.Vendor_Phone, 
+                        Truncate(IfNull(Sum(S.Sale_Value), 0), 2) Vendor_Sales,
+                        Truncate(IfNull(Sum(S.Sale_Value), 0) * 0.085, 2) Vendor_Charge
+                From Vendor V
+                    Left Join Sale S On V.Vendor_Id = S.Sale_Vendor_Id
+                Where   V.Vendor_Status_Id = 1
+                        and V.Vendor_Name like '%".$_GET['vendorsSearch']."%'
+                Group by V.Vendor_Id, V.Vendor_Name, V.Vendor_Email, V.Vendor_Phone
+            ";
+    }
+    echo $sql;
 
     $result = $conn->query($sql);
 
@@ -114,10 +130,12 @@ if (isset($_GET['delete'])) {
             </a>
         </div>
         <div class="col-md">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Vendor name" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-            </div>
+            <form action="../tray-homework-php-test/?vendorsSearch<?=$vendorsSearch?>">
+                <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Vendor name" name="vendorsSearch" value="<?=$_GET['vendorsSearch']?>">
+                        <button type="submit" class="btn btn-outline-secondary">Search</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
