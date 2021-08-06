@@ -43,8 +43,13 @@ class Vendor {
     public function register() {
         //DATABASE VENDOR INSERT
         $obDatabase = new Database('vendor');
-        echo "<pre>"; print_r($obDatabase); echo "</pre>"; exit;
-        //ASSIGN VENDOR ID TO INSTANCE
+        $this->vendorId = $obDatabase->insert([
+                                                'Vendor_Name'       => $this->vendorName,
+                                                'Vendor_Email'      => $this->vendorEmail,
+                                                'Vendor_Phone'      => $this->vendorPhone,
+                                                'Vendor_Status_Id'  => $this->vendorStatusId
+                                            ]);
+
 
         //RETURN SUCCESS
 
