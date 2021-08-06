@@ -59,7 +59,6 @@ function makeVendorsTable()
                 Group by V.Vendor_Id, V.Vendor_Name, V.Vendor_Email, V.Vendor_Phone
             ";
     }
-    echo $sql;
 
     $result = $conn->query($sql);
 
