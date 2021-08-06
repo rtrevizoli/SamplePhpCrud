@@ -1,5 +1,7 @@
 # tray-homework-php-test
 
+Aplicação desenvolvida utilizando os conceitos de POO e PDO.
+
 ## Aplicação:
 
 Desenvolver um sistema para cadastro de vendas para vendedores e calcular a
