@@ -15,17 +15,17 @@
 
                     <div class="mb-3">
                         <label for="inputName" class="form-label">Vendor name</label>
-                        <input type="text" class="form-control" name="inputName">
+                        <input type="text" class="form-control" name="inputName" value="<?=$obVendor->Vendor_Name?>">
                     </div>
 
                     <div class="mb-3">
                         <label for="inputEmail" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" name="inputEmail">
+                        <input type="email" class="form-control" name="inputEmail" value="<?=$obVendor->Vendor_Email?>">
                     </div>
 
                     <div class="mb-3">
                         <label for="inputPhone" class="form-label">Phone</label>
-                        <input type="text" class="form-control" name="inputPhone" value="">
+                        <input type="text" class="form-control" name="inputPhone" value="<?=$obVendor->Vendor_Phone?>">
                     </div>
 
                     <div class="py-4">
