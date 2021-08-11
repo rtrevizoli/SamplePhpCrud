@@ -136,9 +136,9 @@ class Database {
      * @param string $limit
      * @return PDOStatment
      */
-    public function select($fields = ['*'], $join = [], $where = [], $order = [], $group = [], $limit = null) {
+    public function select($fields = [], $join = [], $where = [], $order = [], $group = [], $limit = null) {
         // QUERY DATA
-        $fields = count($fields) > 0 ? implode(', ', $fields).' ' : '';
+        $fields = count($fields) > 0 ? implode(', ', $fields).' ' : '* ';
         $join = count($join) > 0 ? ' '.implode(', ', $this->joinMaker($join)).' ' : '';
         $where = count($where) > 0 ? ' Where '.implode(', ', $where).' ' : '';
         $order = count($order) > 0 ? ' Order by '.implode(', ', $order).' ' : '';
