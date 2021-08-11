@@ -13,7 +13,7 @@ if (isset($_POST['inputName'], $_POST['inputEmail'], $_POST['inputPhone'])) {
     $obVendor->vendorEmail  = $_POST['inputEmail'];
     $obVendor->vendorPhone  = $_POST['inputPhone'];
     $obVendor->vendorStatusId = 1;
-    $obVendor->register();
+    $obVendor->insert();
 
     header('location: index.php?status=success');
     exit;

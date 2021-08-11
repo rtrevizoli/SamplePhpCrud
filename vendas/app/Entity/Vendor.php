@@ -41,7 +41,7 @@ class Vendor {
      * Responsible method that register new vendors on db
      * @return boolean
      */
-    public function register() {
+    public function insert() {
         //DATABASE VENDOR INSERT
         $obDatabase = new Database('vendor');
         $this->Vendor_Id = $obDatabase->insert([
@@ -50,7 +50,6 @@ class Vendor {
                                                 'Vendor_Phone'      => $this->vendorPhone,
                                                 'Vendor_Status_Id'  => $this->vendorStatusId
                                             ]);
-
 
         //RETURN SUCCESS
         return true;
