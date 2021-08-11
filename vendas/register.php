@@ -2,6 +2,8 @@
 
 require __DIR__.'/vendor/autoload.php';
 
+define('TITLE', 'Vendor registration');
+
 use \App\Entity\Vendor;
 
 // VALIDAÇÂO DO POST

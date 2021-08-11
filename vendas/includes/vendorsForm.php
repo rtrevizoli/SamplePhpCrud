@@ -9,7 +9,7 @@
         <div class="bg-light rounded-3">
             <div class="container-fluid">
 
-                <h2 class="py-4">Vendor register</h2>
+                <h2 class="py-4"><?=TITLE?></h2>
 
                 <form method="post">
 
