@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use \App\Db\Database;
+use \PDO;
 
 class Vendor {
     
@@ -10,31 +11,31 @@ class Vendor {
      * Vendor's identifier
      * @var integer
      */
-    public $vendorId;
+    public $Vendor_Id;
 
     /**
      * Vendor's name
      * @var string
      */
-    public $vendorName;
+    public $Vendor_Name;
 
     /**
      *  Vendor's e-mail
      * @var string
      */
-    public $vendorEmail;
+    public $Vendor_Email;
 
     /**
      * Vendor's phone
      * @var string
      */
-    public $vendorPhone;
+    public $Vendor_Phone;
 
     /**
      * Vendor status identifier
      * @var integer
      */
-    public $vendorStatusId;
+    public $Vendor_Status_Id;
 
     /**
      * Responsible method that register new vendors on db
@@ -43,7 +44,7 @@ class Vendor {
     public function register() {
         //DATABASE VENDOR INSERT
         $obDatabase = new Database('vendor');
-        $this->vendorId = $obDatabase->insert([
+        $this->Vendor_Id = $obDatabase->insert([
                                                 'Vendor_Name'       => $this->vendorName,
                                                 'Vendor_Email'      => $this->vendorEmail,
                                                 'Vendor_Phone'      => $this->vendorPhone,
@@ -52,7 +53,20 @@ class Vendor {
 
 
         //RETURN SUCCESS
+        return true;
+    }
 
+    /**
+     * Responsible method that get vendors on db
+     * @param string $where
+     * @param string $order
+     * @param string $limit
+     * @return array
+     */
+    public static function getVendors($fields = [], $join = [], $where = [], $order = [], $group = [], $limit = null) {
+        //DATABASE GET VENDORS AND RETURN
+        return (new Database('vendor'))->select($fields, $join, $where, $order, $group, $limit)
+                                       ->fetchAll(PDO::FETCH_CLASS, self::class);
     }
 
 }
