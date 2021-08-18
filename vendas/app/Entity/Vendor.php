@@ -45,14 +45,28 @@ class Vendor {
         //DATABASE VENDOR INSERT
         $obDatabase = new Database('vendor');
         $this->Vendor_Id = $obDatabase->insert([
-                                                'Vendor_Name'       => $this->vendorName,
-                                                'Vendor_Email'      => $this->vendorEmail,
-                                                'Vendor_Phone'      => $this->vendorPhone,
-                                                'Vendor_Status_Id'  => $this->vendorStatusId
+                                                'Vendor_Name'       => $this->Vendor_Name,
+                                                'Vendor_Email'      => $this->Vendor_Email,
+                                                'Vendor_Phone'      => $this->Vendor_Phone,
+                                                'Vendor_Status_Id'  => $this->Vendor_Status_Id
                                             ]);
 
         //RETURN SUCCESS
         return true;
+    }
+
+    /**
+     * Reponsible method for database updates
+     * @return boolean
+     */
+    public function update() {
+        // DATABASE VENDOR UPDATE AND RETURN
+        return (new Database('vendor'))->update('Vendor_Id = '.$this->Vendor_Id, [
+                                                                                    'Vendor_Name'       => $this->Vendor_Name,
+                                                                                    'Vendor_Email'      => $this->Vendor_Email,
+                                                                                    'Vendor_Phone'      => $this->Vendor_Phone,
+                                                                                    'Vendor_Status_Id'  => $this->Vendor_Status_Id  
+        ]);
     }
 
     /**
@@ -67,5 +81,5 @@ class Vendor {
         return (new Database('vendor'))->select($fields, $join, $where, $order, $group, $limit)
                                        ->fetchAll(PDO::FETCH_CLASS, self::class);
     }
-
+    
 }

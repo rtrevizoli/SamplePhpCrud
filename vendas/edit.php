@@ -24,10 +24,10 @@ if (!$obVendor instanceof Vendor) {
 // POST METHOD VALIDATION
 if (isset($_POST['inputName'], $_POST['inputEmail'], $_POST['inputPhone'])) {
 
-    $obVendor->vendorName   = $_POST['inputName'];
-    $obVendor->vendorEmail  = $_POST['inputEmail'];
-    $obVendor->vendorPhone  = $_POST['inputPhone'];
-    $obVendor->vendorStatusId = 1;
+    $obVendor->Vendor_Name   = $_POST['inputName'];
+    $obVendor->Vendor_Email  = $_POST['inputEmail'];
+    $obVendor->Vendor_Phone  = $_POST['inputPhone'];
+    $obVendor->Vendor_Status_Id = 1;
     $obVendor->update();
 
     header('location: index.php?status=success');
