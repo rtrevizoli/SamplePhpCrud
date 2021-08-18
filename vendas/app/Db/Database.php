@@ -107,8 +107,8 @@ class Database {
     }
 
     /**
-     * Method responsivle for database inserts
-     * @param array $values [ fiel => value ]
+     * Method responsible for database inserts
+     * @param array $values [ field => value ]
      * @return integer inserted id
      */
     public function insert($values) {
