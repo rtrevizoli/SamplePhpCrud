@@ -1,4 +1,4 @@
-# tray-homework-php-test
+# SamplePhpCrud
 
 Aplicação desenvolvida utilizando os conceitos de POO e PDO.
 
