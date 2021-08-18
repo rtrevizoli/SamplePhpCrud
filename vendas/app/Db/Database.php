@@ -17,7 +17,7 @@ class Database {
      * Database name
      * @var string
      */
-    const NAME = 'tray-homework-php-test';
+    const NAME = 'SamplesPhpCrud';
 
     /**
      * Database user

@@ -1,5 +1,5 @@
 {
-    "name":"tray-homework-php-test/vendas",
+    "name":"SamplePhpCrud/vendas",
     "autoload":{
         "psr-4":{
             "App\\":"app/"
