@@ -17,7 +17,7 @@ class Database {
      * Database name
      * @var string
      */
-    const NAME = 'SamplesPhpCrud';
+    const NAME = 'SamplePhpCrud';
 
     /**
      * Database user
