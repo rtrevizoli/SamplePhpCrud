@@ -3,4 +3,4 @@
 
 # Composer
 vendas/composer.lock
-vendas/vendor/composer
+vendas/vendor/
