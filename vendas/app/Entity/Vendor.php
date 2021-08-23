@@ -66,7 +66,18 @@ class Vendor {
                                                                                     'Vendor_Email'      => $this->Vendor_Email,
                                                                                     'Vendor_Phone'      => $this->Vendor_Phone,
                                                                                     'Vendor_Status_Id'  => $this->Vendor_Status_Id  
-        ]);
+                                                                                ]);
+    }
+
+    /**
+     * Responsible method responsible for logial delete a vendor
+     * @return boolean
+     */
+    public function delete() {
+        // DATABASE VENDOR LOGICAL DELETE AND RETURN
+        return (new Database('vendor'))->update('Vendor_Id = '.$this->Vendor_Id, [
+                                                                                    'Vendor_Status_Id' => 2
+                                                                                ]);
     }
 
     /**
