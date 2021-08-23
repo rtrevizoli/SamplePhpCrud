@@ -71,9 +71,12 @@ class Vendor {
 
     /**
      * Responsible method that get vendors on db
-     * @param string $where
-     * @param string $order
-     * @param string $limit
+     * @param array $fields []
+     * @param array $join []
+     * @param array $where []
+     * @param array $order []
+     * @param array $group []
+     * @param string $limit null
      * @return array
      */
     public static function getVendors($fields = [], $join = [], $where = [], $order = [], $group = [], $limit = null) {
