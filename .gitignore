@@ -1,2 +1,6 @@
 # Vscode
 .vscode/
+
+# Composer
+vendas/composer.lock
+vendas/vendor/

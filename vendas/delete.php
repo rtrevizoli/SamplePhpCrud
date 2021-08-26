@@ -2,8 +2,6 @@
 
 require __DIR__.'/vendor/autoload.php';
 
-define('TITLE', 'Vendor edit');
-
 use \App\Entity\Vendor;
 
 // VENDOR ID VALIDATION
@@ -22,18 +20,14 @@ if (!$obVendor instanceof Vendor) {
 }
 
 // POST METHOD VALIDATION
-if (isset($_POST['inputName'], $_POST['inputEmail'], $_POST['inputPhone'])) {
-
-    $obVendor->Vendor_Name   = $_POST['inputName'];
-    $obVendor->Vendor_Email  = $_POST['inputEmail'];
-    $obVendor->Vendor_Phone  = $_POST['inputPhone'];
-    $obVendor->Vendor_Status_Id = 1;
-    $obVendor->update();
+if (isset($_POST['delete'])) {
+    
+    $obVendor->delete();
 
     header('location: index.php?status=success');
     exit;
 }
 
 include __DIR__.'/includes/header.php';
-include __DIR__.'/includes/vendorsForm.php';
+include __DIR__.'/includes/confirm-delete.php';
 include __DIR__.'/includes/footer.php';

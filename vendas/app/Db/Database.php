@@ -17,7 +17,7 @@ class Database {
      * Database name
      * @var string
      */
-    const NAME = 'tray-homework-php-test';
+    const NAME = 'SamplePhpCrud';
 
     /**
      * Database user
@@ -148,7 +148,28 @@ class Database {
         // QUERY MAKER
         $query = 'Select '.$fields.'From '.$this->table.' '.substr($this->table, 0, 1).$join.$where.$order.$group.$limit;
 
+        // RETURN
         return $this->execute($query);
+    }
+
+    /**
+     * Method responsible for database updates
+     * @param string $where
+     * @param array $values [ field => value ]
+     * @return boolean     * 
+     */
+    public function update($where, $values) {
+        // QUERY DATA
+        $fields = array_keys($values);
+
+        // QUERY MAKER
+        $query = 'Update '.$this->table.' Set '.implode(' = ?, ', $fields).' = ? Where '.$where;
+
+        // UPDATE EXECUTE
+        $this->execute($query, array_values(($values)));
+
+        // RETURN
+        return true;
     }
 
 }

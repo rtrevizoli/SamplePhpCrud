@@ -4,6 +4,10 @@ require __DIR__.'/vendor/autoload.php';
 
 use \App\Entity\Vendor;
 
+define("ISSEARCH", isset($_POST['vendorsSearch']) ? true : false);
+
+$vendorsSearch = ISSEARCH ? ' and V.Vendor_Name like "%'.$_POST['vendorsSearch'].'%"' : '';
+
 $vendors = Vendor::getVendors([
                                 'V.Vendor_Id',
                                 'V.Vendor_Name', 
@@ -20,7 +24,7 @@ $vendors = Vendor::getVendors([
                                 'joinTableIdColumn' => 'Sale_Vendor_Id'
                             ]], 
                             [
-                                'V.Vendor_Status_Id = 1'
+                                'V.Vendor_Status_Id = 1'.$vendorsSearch
                             ], 
                             [], 
                             [
@@ -29,6 +33,8 @@ $vendors = Vendor::getVendors([
                                 'V.Vendor_Email', 
                                 'V.Vendor_Phone'
                             ]);
+
+$vendorsSearch = ISSEARCH ? explode("%", $vendorsSearch)[1] : '';
 
 // echo "<pre>"; print_r($vendors); echo "</pre>"; exit;
 

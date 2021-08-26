@@ -45,10 +45,10 @@ class Vendor {
         //DATABASE VENDOR INSERT
         $obDatabase = new Database('vendor');
         $this->Vendor_Id = $obDatabase->insert([
-                                                'Vendor_Name'       => $this->vendorName,
-                                                'Vendor_Email'      => $this->vendorEmail,
-                                                'Vendor_Phone'      => $this->vendorPhone,
-                                                'Vendor_Status_Id'  => $this->vendorStatusId
+                                                'Vendor_Name'       => $this->Vendor_Name,
+                                                'Vendor_Email'      => $this->Vendor_Email,
+                                                'Vendor_Phone'      => $this->Vendor_Phone,
+                                                'Vendor_Status_Id'  => $this->Vendor_Status_Id
                                             ]);
 
         //RETURN SUCCESS
@@ -56,10 +56,38 @@ class Vendor {
     }
 
     /**
+     * Reponsible method for database updates
+     * @return boolean
+     */
+    public function update() {
+        // DATABASE VENDOR UPDATE AND RETURN
+        return (new Database('vendor'))->update('Vendor_Id = '.$this->Vendor_Id, [
+                                                                                    'Vendor_Name'       => $this->Vendor_Name,
+                                                                                    'Vendor_Email'      => $this->Vendor_Email,
+                                                                                    'Vendor_Phone'      => $this->Vendor_Phone,
+                                                                                    'Vendor_Status_Id'  => $this->Vendor_Status_Id  
+                                                                                ]);
+    }
+
+    /**
+     * Responsible method responsible for logial delete a vendor
+     * @return boolean
+     */
+    public function delete() {
+        // DATABASE VENDOR LOGICAL DELETE AND RETURN
+        return (new Database('vendor'))->update('Vendor_Id = '.$this->Vendor_Id, [
+                                                                                    'Vendor_Status_Id' => 2
+                                                                                ]);
+    }
+
+    /**
      * Responsible method that get vendors on db
-     * @param string $where
-     * @param string $order
-     * @param string $limit
+     * @param array $fields []
+     * @param array $join []
+     * @param array $where []
+     * @param array $order []
+     * @param array $group []
+     * @param string $limit null
      * @return array
      */
     public static function getVendors($fields = [], $join = [], $where = [], $order = [], $group = [], $limit = null) {
@@ -67,5 +95,5 @@ class Vendor {
         return (new Database('vendor'))->select($fields, $join, $where, $order, $group, $limit)
                                        ->fetchAll(PDO::FETCH_CLASS, self::class);
     }
-
+    
 }

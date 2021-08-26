@@ -66,9 +66,9 @@ if (count($vendors) > 0) {
                 </a>
             </div>
             <div class="col-md">
-                <form action="">
+                <form method="post">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Vendor name" name="vendorsSearch" value="">
+                        <input type="text" class="form-control" placeholder="Vendor name" name="vendorsSearch" value="<?=$vendorsSearch?>">
                         <button type="submit" class="btn btn-outline-secondary">Search</button>
                     </div>
                 </form>
