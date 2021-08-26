@@ -4,7 +4,9 @@ require __DIR__.'/vendor/autoload.php';
 
 use \App\Entity\Vendor;
 
-$vendorsSearch = isset($_POST['vendorsSearch']) ? ' and V.Vendor_Name like "%'.$_POST['vendorsSearch'].'%"' : '';
+define("ISSEARCH", isset($_POST['vendorsSearch']) ? true : false);
+
+$vendorsSearch = ISSEARCH ? ' and V.Vendor_Name like "%'.$_POST['vendorsSearch'].'%"' : '';
 
 $vendors = Vendor::getVendors([
                                 'V.Vendor_Id',
@@ -32,7 +34,7 @@ $vendors = Vendor::getVendors([
                                 'V.Vendor_Phone'
                             ]);
 
-$vendorsSearch = explode("%", $vendorsSearch)[1];
+$vendorsSearch = ISSEARCH ? explode("%", $vendorsSearch)[1] : '';
 
 // echo "<pre>"; print_r($vendors); echo "</pre>"; exit;
 
