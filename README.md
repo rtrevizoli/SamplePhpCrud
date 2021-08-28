@@ -1,5 +1,5 @@
 # SamplePhpCrud
-Aplicação desenvolvida utilizando os conceitos de POO e PDO.
+Aplicação desenvolvida utilizando os conceitos de POO, PDO e Web Component.
 
 
 ## Aplicação:
