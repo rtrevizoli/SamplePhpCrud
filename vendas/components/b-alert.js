@@ -4,9 +4,11 @@ class BAlert extends HTMLElement {
         // ALWAYS CALL SUPER FIRST IN CONSTRUCTOR
         super();
 
+        const alertClass = this.getAttribute('status') === 'success' ? 'alert-success' : 'alert-danger';
+
         // CREATE DIV ELEMENT
         const wrapper = document.createElement('div');
-        wrapper.setAttribute('class', 'alert alert-danger');
+        wrapper.setAttribute('class', 'alert ' + alertClass);
         wrapper.setAttribute('role', 'alert');
         wrapper.setAttribute('style', 'position: absolute; top: 3%; right: 3%;');
 
@@ -38,5 +40,5 @@ customElements.define('b-alert', BAlert);
         <span>E-mail or password is incorrect.</span>
     </div>
     
-    <b-alert alert-text="E-mail or password is incorrect."></b-alert>
+    <b-alert status="" alert-text=""></b-alert>
 */
