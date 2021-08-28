@@ -39,5 +39,6 @@ $vendorsSearch = ISSEARCH ? explode("%", $vendorsSearch)[1] : '';
 // echo "<pre>"; print_r($vendors); echo "</pre>"; exit;
 
 include __DIR__.'/includes/header.php';
+include __DIR__.'/includes/alert.php';
 include __DIR__.'/includes/vendorsList.php';
 include __DIR__.'/includes/footer.php';

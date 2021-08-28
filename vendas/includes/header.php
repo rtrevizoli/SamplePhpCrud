@@ -15,14 +15,6 @@
 </head>
 
 <body>
-    <?php
-        if (isset($_GET['status'])) {
-    ?>
-            <b-alert alert-text="<?=$_GET['status'].'.'?>"></b-alert>
-    <?php
-        }
-    ?>
-
     <div class="container py-4" style="width: 80%;">
         <div class="jumbotron">
             <h1>Sales pannel</h1>
