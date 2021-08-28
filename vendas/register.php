@@ -16,7 +16,7 @@ if (isset($_POST['inputName'], $_POST['inputEmail'], $_POST['inputPhone'])) {
     $obVendor->Vendor_Status_Id = 1;
     $obVendor->insert();
 
-    header('location: index.php?status=success');
+    header('location: index.php?status=success&message=Vendor+registered+successfully');
     exit;
 }
 
